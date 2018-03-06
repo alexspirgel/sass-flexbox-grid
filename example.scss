@@ -15,8 +15,6 @@ body {
 	));
 
 	@media (min-width: 500px) {
-		padding: 0;
-
 		@include flexbox-grid((
 		  item-selector: '&__item',
 		  item-align: 'center',
