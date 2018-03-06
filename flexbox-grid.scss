@@ -1,0 +1,76 @@
+/**
+ * Sass Flexbox Grid v1.0.0
+ * https://github.com/alexspirgel/sass-flexbox-grid
+ */
+
+@mixin flexbox-grid($options: ()) {
+
+  // ~= Options =~ //
+
+  $default-options: (
+    item-selector: '&__item',
+    item-align: 'left',
+    columns: 2,
+    gutter-horizontal: 0px,
+    gutter-vertical: 0px
+  );
+
+  $merged-options: map-merge($default-options, $options);
+
+  // Set the merged options values to variables for readability.
+  $item-selector: map-get($merged-options, item-selector);
+  $item-align: map-get($merged-options, item-align);
+  $columns: map-get($merged-options, columns);
+  $gutter-horizontal: map-get($merged-options, gutter-horizontal);
+  $gutter-vertical: map-get($merged-options, gutter-vertical);
+
+  // ~= Container Styles =~ //
+
+  display: flex;
+  flex-wrap: wrap;
+
+  // Set the alignment of the items.
+  @if $item-align == 'left' {
+    justify-content: flex-start;
+  }
+  @else if $item-align == 'right' {
+    justify-content: flex-end;
+  }
+  @else if $item-align == 'center' {
+    justify-content: center;
+  }
+
+  // ~= Item Styles =~ //
+
+  #{$item-selector} {
+
+    // Calculate the amount to reduce each column by.
+    $item-width-reduction: $gutter-horizontal * ($columns - 1) / $columns;
+
+    flex: 0 0 auto;
+    width: calc(100%/#{$columns} - #{$item-width-reduction});
+    margin-right: $gutter-horizontal;
+    margin-bottom: $gutter-vertical;
+
+    // Allow for multiple instances of flexbox-grid to overwrite each other properly.
+    &:nth-child(n) {
+      margin-right: $gutter-horizontal;
+    }
+    // Select the last column of items.
+    &:nth-child(#{$columns}n) {
+      margin-right: 0;
+    }
+
+    // Allow for multiple instances of flexbox-grid to overwrite each other properly.
+    &:nth-child(n):nth-last-child(n):nth-of-type(n) {
+      margin-bottom: $gutter-vertical;
+    }
+    // Select the last row of items.
+    &:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}):nth-of-type(n),
+    &:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}) ~ #{$item-selector} {
+      margin-bottom: 0;
+    }
+
+  } // End #{$item-selector}
+  
+} // End @mixin flexbox-grid()
