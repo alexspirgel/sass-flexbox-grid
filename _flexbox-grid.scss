@@ -52,8 +52,8 @@
 		margin-right: $gutter-horizontal;
 		margin-bottom: $gutter-vertical;
 
-		// Allow for multiple instances of flexbox-grid to overwrite each other properly.
-		&:nth-child(n) {
+		// Horizontal Gutter
+		&:nth-child(n) { // Select all items, matching specificity to allow for multiple instances of flexbox-grid to overwrite each other properly.
 			margin-right: $gutter-horizontal;
 		}
 		&:nth-child(#{$columns}n), // Select the last column of items.
@@ -61,13 +61,12 @@
 			margin-right: 0;
 		}
 
-		// Allow for multiple instances of flexbox-grid to overwrite each other properly.
-		&:nth-child(n):nth-last-child(n):nth-of-type(n) {
+		// Vertical Gutter
+		&:nth-child(n):nth-last-child(n):nth-of-type(n) { // Select all items, matching specificity to allow for multiple instances of flexbox-grid to overwrite each other properly.
 			margin-bottom: $gutter-vertical;
 		}
-		// Select the last row of items.
-		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}):nth-of-type(n),
-		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}) ~ & {
+		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}):nth-of-type(n), // Select the first item of the last row, matching specificity.
+		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}) ~ & { // Select the items after the first item of the last row.
 			margin-bottom: 0;
 		}
 
