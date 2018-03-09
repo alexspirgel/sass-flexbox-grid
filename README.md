@@ -11,7 +11,7 @@ Option | Type | Default | Description
 `gutter-vertical` | number | `0px` | Vertical distance between grid items.
 
 ## Notes
-* Gutters will only add spacing between the items within the grid by design. If space between grid items and the boundary of the grid wrapper is needed, it is easily achievable by adding padding directly to the grid wrapper.
+* Gutters will only add spacing between items by design. If space between grid items and the grid wrapper is needed, it can be achieved by adding padding directly to the grid wrapper.
 
 ## Known Issues
 * None
