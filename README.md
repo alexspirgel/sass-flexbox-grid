@@ -1,5 +1,5 @@
 # SASS Flexbox Grid
-Creates a grid of items using a SASS mixin with options.
+Create a grid of items using a SASS mixin.
 
 ## Options
 Option | Type | Default | Description
