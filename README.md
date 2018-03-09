@@ -1,5 +1,5 @@
 # SASS Flexbox Grid
-Creates a grid of items using a SASS mixin with passable options.
+Creates a grid of items using a SASS mixin with options.
 
 ## Options
 Option | Type | Default | Description
@@ -10,7 +10,10 @@ Option | Type | Default | Description
 `gutter-horizontal` | number | `0px` | Horizontal distance between grid items.
 `gutter-vertical` | number | `0px` | Vertical distance between grid items.
 
-## Known Issues:
+## Notes
+* Gutters will only add spacing between the items within the grid by design. If space between grid items and the boundary of the grid wrapper is needed, it is easily achievable by adding padding directly to the grid wrapper.
+
+## Known Issues
 * None
 
 ## Changelog
