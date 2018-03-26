@@ -19,8 +19,8 @@ Option | Type | Default | Description
 
 ## Changelog
 
-### Version 1.0.1
+#### Version 1.0.1
 * Fixed a bug where passing certain item selector values would result in incorrect child selectors.
 
-### Version 1.0.0
+#### Version 1.0.0
 * Initial creation.
