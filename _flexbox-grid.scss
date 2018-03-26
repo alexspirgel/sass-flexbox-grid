@@ -1,5 +1,5 @@
 /**
-* Sass Flexbox Grid v1.0.0
+* Sass Flexbox Grid v1.0.1
 * https://github.com/alexspirgel/sass-flexbox-grid
 */
 
@@ -8,7 +8,7 @@
 	// ~= Options =~ //
 
 	$default-options: (
-		item-selector: '&__item',
+		item-selector: '#{&}__item',
 		item-align: 'left',
 		columns: 2,
 		gutter-horizontal: 0px,
@@ -52,7 +52,7 @@
 		margin-right: $gutter-horizontal;
 		margin-bottom: $gutter-vertical;
 
-		// Horizontal Gutter
+		// ~= Horizontal Gutter =~ //
 		&:nth-child(n) { // Select all items, matching specificity to allow for multiple instances of flexbox-grid to overwrite each other properly.
 			margin-right: $gutter-horizontal;
 		}
@@ -61,15 +61,15 @@
 			margin-right: 0;
 		}
 
-		// Vertical Gutter
+		// ~= Vertical Gutter =~ //
 		&:nth-child(n):nth-last-child(n):nth-of-type(n) { // Select all items, matching specificity to allow for multiple instances of flexbox-grid to overwrite each other properly.
 			margin-bottom: $gutter-vertical;
 		}
 		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}):nth-of-type(n), // Select the first item of the last row, matching specificity.
-		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}) ~ & { // Select the items after the first item of the last row.
+		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}) ~ #{$item-selector} { // Select the items after the first item of the last row.
 			margin-bottom: 0;
 		}
 
-	} // End #{$item-selector}
+	} // End item selector.
 
-} // End @mixin flexbox-grid()
+} // End mixin.
