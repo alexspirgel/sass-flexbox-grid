@@ -22,7 +22,7 @@ Create a grid of items using flexbox via SASS mixin.
 </div>
 ```
 
-**SASS**
+**SASS:**
 ```sass
 .grid {
 
