@@ -11,15 +11,15 @@ body {
 	@include flexbox-grid((
 		item-selector: '#{&}__item',
 		columns: 1,
-		gutter-vertical: 10px
+		row-gutter: 10px
 	));
 
 	@media (min-width: 500px) {
 		@include flexbox-grid((
 			item-align: 'center',
 			columns: 3,
-			gutter-horizontal: 15px,
-			gutter-vertical: 15px
+			column-gutter: 15px,
+			row-gutter: 15px
 		));
 	}
 
@@ -28,8 +28,8 @@ body {
 			item-selector: '.grid__item',
 			item-align: 'left',
 			columns: 4,
-			gutter-horizontal: 25px,
-			gutter-vertical: 25px
+			column-gutter: 25px,
+			row-gutter: 25px
 		));
 	}
 
@@ -58,8 +58,8 @@ body {
 		@include flexbox-grid((
 			item-selector: $grid2-item-selector,
 			columns: 8,
-			gutter-horizontal: 10px,
-			gutter-vertical: 10px
+			column-gutter: 10px,
+			row-gutter: 10px
 		));
 	}
 
