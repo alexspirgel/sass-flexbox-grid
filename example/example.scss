@@ -1,0 +1,76 @@
+@import '../flexbox-grid';
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.grid {
+	background-color: #e0e0e0;
+
+	@include flexbox-grid((
+		item-selector: '#{&}__item',
+		columns: 1,
+		row-gutter: 10px
+	));
+
+	@media (min-width: 500px) {
+		@include flexbox-grid((
+			item-align: 'center',
+			columns: 3,
+			column-gutter: 15px,
+			row-gutter: 15px
+		));
+	}
+
+	@media (min-width: 1000px) {
+		@include flexbox-grid((
+			item-selector: '.grid__item',
+			item-align: 'left',
+			columns: 4,
+			column-gutter: 25px,
+			row-gutter: 25px
+		));
+	}
+
+	&__item {
+		&__inner {
+			padding: 10px;
+			background-color: #2196f3;
+			color: #ffffff;
+			font-family: sans-serif;
+			font-size: 32px;
+			text-align: center;
+		}
+	}
+}
+
+.grid2 {
+	background-color: #e0e0e0;
+	
+	@include flexbox-grid((
+		item-selector: '.item2',
+		columns: 4
+	));
+
+	@media (min-width: 750px) {
+		$grid2-item-selector: '.item2';
+		@include flexbox-grid((
+			item-selector: $grid2-item-selector,
+			columns: 8,
+			column-gutter: 10px,
+			row-gutter: 10px
+		));
+	}
+
+	.item2 {
+		.inner2 {
+			padding: 10px;
+			background-color: #4caf50;
+			color: #ffffff;
+			font-family: sans-serif;
+			font-size: 32px;
+			text-align: center;
+		}
+	}
+}

@@ -1,5 +1,5 @@
 /**
-* Sass Flexbox Grid v1.0.0
+* Sass Flexbox Grid v1.0.2
 * https://github.com/alexspirgel/sass-flexbox-grid
 */
 
@@ -8,11 +8,11 @@
 	// ~= Options =~ //
 
 	$default-options: (
-		item-selector: '&__item',
+		item-selector: '#{&}__item',
 		item-align: 'left',
-		columns: 2,
-		gutter-horizontal: 0px,
-		gutter-vertical: 0px
+		columns: 1,
+		column-gutter: 0px,
+		row-gutter: 0px
 	);
 
 	$merged-options: map-merge($default-options, $options);
@@ -21,8 +21,8 @@
 	$item-selector: map-get($merged-options, item-selector);
 	$item-align: map-get($merged-options, item-align);
 	$columns: map-get($merged-options, columns);
-	$gutter-horizontal: map-get($merged-options, gutter-horizontal);
-	$gutter-vertical: map-get($merged-options, gutter-vertical);
+	$column-gutter: map-get($merged-options, column-gutter);
+	$row-gutter: map-get($merged-options, row-gutter);
 
 	// ~= Container Styles =~ //
 
@@ -45,31 +45,37 @@
 	#{$item-selector} {
 
 		// Calculate the amount to reduce each column by.
-		$item-width-reduction: $gutter-horizontal * ($columns - 1) / $columns;
+		$item-width-reduction: $column-gutter * ($columns - 1) / $columns;
 
 		flex: 0 0 auto;
 		width: calc(100%/#{$columns} - #{$item-width-reduction});
-		margin-right: $gutter-horizontal;
-		margin-bottom: $gutter-vertical;
+		margin-right: $column-gutter;
+		margin-bottom: $row-gutter;
 
-		// Horizontal Gutter
-		&:nth-child(n) { // Select all items, matching specificity to allow for multiple instances of flexbox-grid to overwrite each other properly.
-			margin-right: $gutter-horizontal;
+		// ~= Horizontal Gutter =~ //
+		// Select all items, matching specificity to allow for multiple instances of flexbox-grid to overwrite each other properly.
+		&:nth-child(n) {
+			margin-right: $column-gutter;
 		}
-		&:nth-child(#{$columns}n), // Select the last column of items.
-		&:last-child { // Select the last item.
+		// Select the last column of items.
+		&:nth-child(#{$columns}n),
+		// Select the last item.
+		&:last-child {
 			margin-right: 0;
 		}
 
-		// Vertical Gutter
-		&:nth-child(n):nth-last-child(n):nth-of-type(n) { // Select all items, matching specificity to allow for multiple instances of flexbox-grid to overwrite each other properly.
-			margin-bottom: $gutter-vertical;
+		// ~= Vertical Gutter =~ //
+		// Select all items, matching specificity to allow for multiple instances of flexbox-grid to overwrite each other properly.
+		&:nth-child(n):nth-last-child(n):nth-of-type(n) {
+			margin-bottom: $row-gutter;
 		}
-		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}):nth-of-type(n), // Select the first item of the last row, matching specificity.
-		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}) ~ & { // Select the items after the first item of the last row.
+		// Select the first item of the last row, matching specificity.
+		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}):nth-of-type(n),
+		// Select the items after the first item of the last row.
+		&:nth-child(#{$columns}n + 1):nth-last-child(-n + #{$columns}) ~ #{$item-selector} {
 			margin-bottom: 0;
 		}
 
-	} // End #{$item-selector}
+	} // End selector: #{$item-selector}
 
-} // End @mixin flexbox-grid()
+} // End mixin: flexbox-grid
